@@ -10,7 +10,8 @@ This is a work in progress, and does not yet include all code required to run it
 ## Workflow
 Samples from blood donors were extracted as explained in the Blood Cell Painting paper, and imaged by a confocal microscope.
 
-Flattened images were tiled to 540x540, numpy arrays of 4x540x540 created with all channels except brightfield, and the model was taught with them for 13 epochs, with batch size = 64 and vit_small. The main code also uses gradient accumulation and BN for the DINOHead.
+Flattened images were tiled to 540x540, numpy arrays of 4x540x540 created with all channels except brightfield, and the model was taught with them for 13 epochs, with batch size = 64 and vit_small. The image channels Hoechst (DNA), Alexa 488 (syto14 + concanavalin), Mitotracker (mitochondria) and Alexa 568 (phalloidin + WGA) were used in the training. The main code also uses gradient accumulation and BN for the DINOHead.
+
 Batch effects were removed from the features after training by:
 - Scaling to controls and standardizing data to mean = 0 and std = 1
 - Applying [Harmony](https://www.nature.com/articles/s41592-019-0619-0) correction for plate and well
@@ -28,7 +29,7 @@ Some attention heads focus more on the background, and some on the cells.
 Attention channels with mean attention overlaid show the averaged focus falls on cells.
 ![Attention channels](images/attention_channels.png)
 
-Clustering results from HDBSCAN show two major clusters and multiple smaller ones.
+Clustering results from HDBSCAN show two major clusters and multiple smaller ones. Noise refers to points between clusters (outliers) detected by HDBSCAN.
 ![Clustering with HDBSCAN](images/clusters.png)
 
 Running GWAS for FinnGen donors revealed associations between certain genomic regions and clusters created by the DinoBCP.
