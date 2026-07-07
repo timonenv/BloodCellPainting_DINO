@@ -34,6 +34,6 @@ Clustering results from HDBSCAN show two major clusters and multiple smaller one
 Running GWAS for FinnGen donors revealed associations between certain genomic regions and clusters created by the DinoBCP.
 These associations have not been confirmed, and are preliminary.
 
-The Manhattan plot reveals genome-wide significant associations (5e-8) at multiple loci.
+An example of the results: Manhattan plot reveals genome-wide significant associations (5e-8) at chromosome 4, near genes such as *PDLIM5*.
 
 ![Manhattan and QQ plot for one of the PCs](images/gwas_figure.png)
